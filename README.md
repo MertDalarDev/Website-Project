@@ -1,2 +1,1 @@
-Mert Dalar
-Personal Portfolio Website
+Mert Dalar Personal Portfolio Website
