@@ -1,0 +1,141 @@
+/* Google Font - Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    padding: 0 20px;
+    min-height: 100vh;
+    align-items: center;
+    background: rgb(195,34,170);
+    background: linear-gradient(0deg, rgba(195,34,170,1) 0%, rgba(253,139,45,1) 100%);
+    justify-content: center;
+}
+
+::selection {
+    color: #1d1d1d;
+    background: #f6c747;
+}
+
+.wrapper {
+    height: 300px;
+    max-width: 450px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    transition: height 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.wrapper.active {
+    height: 650px;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f6c747;
+}
+
+header p {
+    margin-top: 10px;
+    color: #999;
+    font-size: 18px;
+}
+
+.wrapper .form {
+    margin: 30px 0;
+}
+
+.form :where(input, button) {
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    transition: 0.2s ease;
+}
+
+.form input {
+    font-size: 16px;
+    padding: 0 15px;
+    border: 1px solid #999;
+    color: #333;
+}
+
+.form input:focus {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.form input::placeholder {
+    color: #999;
+}
+
+.form button {
+    color: #fff;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 18px;
+    background: #f6c747;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: 0.2s ease;
+}
+
+.form button:hover {
+    background: #ffc107;
+}
+
+.qr-code {
+    opacity: 0;
+    display: flex;
+    padding: 50px 0;
+    border-radius: 5px;
+    align-items: center;
+    pointer-events: none;
+    justify-content: center;
+    border: 2px dashed #f6c747;
+}
+
+.wrapper.active .qr-code {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.5s 0.2s ease;
+}
+
+.qr-code img {
+    width: 200px;
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        height: 270px;
+        padding: 25px;
+    }
+
+    .wrapper.active {
+        height: 540px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    header p {
+        font-size: 16px;
+    }
+
+    .form :where(input, button) {
+        height: 45px;
+    }
+
+    .qr-code img {
+        width: 180px;
+    }
+}

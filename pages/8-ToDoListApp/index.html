@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-Do List App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/../../assets/img/favicon.png" rel="icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            background-color: orange;
+            font-size: 1.2rem;
+            color: #333;
+            text-transform: uppercase;
+            margin-right: 10px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff;
+        }
+
+        .navbar-nav .active>.nav-link {
+            color: #007bff;
+        }
+
+        body {
+            background-image: url("https://picsum.photos/1920/1080");
+            /* replace with your own background image */
+            background-size: cover;
+        }
+
+        h1 {
+            color: orange;
+            text-shadow: 4px 4px 7px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .list-group-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .list-group-item:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .list-group-item .badge {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a style="color: darkorange;" class="navbar-brand" href="#">NOTE IT</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/../portfolio.html">Homepage <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/../about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/../contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center mb-4">To-Do List</h1>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Add new task" id="task-input">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="add-task-btn">Add</button>
+                    </div>
+                </div>
+                <ul class="list-group" id="task-list">
+                    <!-- list of tasks will be generated dynamically using JS -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        // add JS code here
+        $(document).ready(function () {
+            // array to store tasks
+            let tasks = [];
+
+            // add task function
+            function addTask() {
+                let taskInput = $('#task-input').val();
+                if (taskInput !== '') {
+                    tasks.push(taskInput);
+                    renderTasks();
+                    $('#task-input').val('');
+                }
+            }
+
+            // remove task function
+            function removeTask(index) {
+                tasks.splice(index, 1);
+                renderTasks();
+            }
+
+            // render tasks function
+            function renderTasks() {
+                $('#task-list').empty();
+                for (let i = 0; i < tasks.length; i++) {
+                    let taskItem = $('<li>').addClass('list-group-item d-flex justify-content-between align-items-center')
+                        .text(tasks[i])
+                        .append($('<span>').addClass('badge badge-danger badge-pill ml-2').text('X')
+                            .click(function () {
+                                removeTask(i);
+                            }));
+                    $('#task-list').append(taskItem);
+                }
+            }
+
+            // event listeners
+            $('#add-task-btn').click(function () {
+                addTask();
+            });
+
+            $('#task-input').keypress(function (event) {
+                if (event.keyCode === 13) {
+                    addTask();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
